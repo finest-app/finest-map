@@ -1,14 +1,12 @@
-import { AppShell, Navbar, Header } from '@mantine/core'
+import { AppShell, Header } from '@mantine/core'
+import { Outlet } from 'react-router-dom'
+import AppNavBar from './components/AppNavBar'
 
 const Root = () => {
   return (
     <AppShell
       padding="md"
-      navbar={
-        <Navbar width={{ base: 64 }} p="xs">
-          {/* Navbar content */}
-        </Navbar>
-      }
+      navbar={<AppNavBar />}
       header={
         <Header height={56} p="xs">
           {/* Header content */}
@@ -22,6 +20,7 @@ const Root = () => {
               : theme.colors.gray[0]
         }
       })}>
+      <Outlet />
       {/* Your application here */}
     </AppShell>
   )
