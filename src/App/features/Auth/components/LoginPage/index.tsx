@@ -27,10 +27,10 @@ const LoginPage = () => {
         Login
       </Button>
 
-      <Text align="center" mt="md">
+      <Text color="gray" align="center" mt="xl">
         Don&apos;t have an account?{' '}
         <Anchor component={Link} to="/sign_up" weight="bold">
-          Sign Up
+          Sign Up for free
         </Anchor>
       </Text>
     </form>
