@@ -7,26 +7,33 @@ import {
   Anchor
 } from '@mantine/core'
 import { Link } from 'react-router-dom'
+import useLoginForm from './useLoginForm'
 
 const LoginPage = () => {
+  const { form, handleSubmit } = useLoginForm()
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <Title className="mb-12" order={2} align="center" mt="md">
         Welcome back to Finest Map!
       </Title>
-
-      <TextInput label="Email" placeholder="hello@gmail.com" size="md" />
+      <TextInput
+        type="email"
+        label="Email"
+        placeholder="hello@gmail.com"
+        size="md"
+        {...form.getInputProps('email')}
+      />
       <PasswordInput
         label="Password"
         placeholder="Your password"
         mt="md"
         size="md"
+        {...form.getInputProps('password')}
       />
-
-      <Button fullWidth mt="xl" size="md">
+      <Button type="submit" fullWidth mt="xl" size="md">
         Login
       </Button>
-
       <Text color="gray" align="center" mt="xl">
         Don&apos;t have an account?{' '}
         <Anchor component={Link} to="/sign_up" weight="bold">

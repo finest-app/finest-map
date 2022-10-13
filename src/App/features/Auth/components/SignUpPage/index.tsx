@@ -7,20 +7,31 @@ import {
   Anchor
 } from '@mantine/core'
 import { Link } from 'react-router-dom'
+import useSignUpForm from './useSignUpForm'
 
 const SignUpPage = () => {
+  const { form, handleSubmit } = useSignUpForm()
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <Title className="mb-12" order={2} align="center" mt="md">
         Create new account.
       </Title>
-      <TextInput label="Name" placeholder="Your Name" required size="md" />
       <TextInput
+        label="Name"
+        placeholder="Your Name"
+        required
+        size="md"
+        {...form.getInputProps('name')}
+      />
+      <TextInput
+        type="email"
         label="Email"
         placeholder="hello@gmail.com"
         required
         mt="md"
         size="md"
+        {...form.getInputProps('email')}
       />
       <PasswordInput
         label="Password"
@@ -28,8 +39,9 @@ const SignUpPage = () => {
         required
         mt="md"
         size="md"
+        {...form.getInputProps('password')}
       />
-      <Button fullWidth mt="xl" size="md">
+      <Button type="submit" fullWidth mt="xl" size="md">
         Sign Up
       </Button>
 

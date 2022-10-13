@@ -14,12 +14,14 @@
     "@emotion/react": "^11.10.4",
     "@formkit/auto-animate": "1.0.0-beta.3",
     "@mantine/core": "^5.5.4",
+    "@mantine/form": "^5.5.5",
     "@mantine/hooks": "^5.5.4",
     "@tabler/icons": "^1.103.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.2",
-    "talkr": "^3.3.7"
+    "talkr": "^3.3.7",
+    "zod": "^3.19.1"
   },
   "devDependencies": {
     "@types/node": "^18.8.4",
