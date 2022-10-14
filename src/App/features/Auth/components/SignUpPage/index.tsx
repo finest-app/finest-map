@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 import useSignUpForm from './useSignUpForm'
 
 const SignUpPage = () => {
-  const { form, handleSubmit } = useSignUpForm()
+  const { form, handleSubmit, isLoading } = useSignUpForm()
 
   return (
     <form onSubmit={handleSubmit}>
@@ -41,7 +41,7 @@ const SignUpPage = () => {
         size="md"
         {...form.getInputProps('password')}
       />
-      <Button type="submit" fullWidth mt="xl" size="md">
+      <Button type="submit" fullWidth mt="xl" size="md" loading={isLoading}>
         Sign Up
       </Button>
 

@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 import useLoginForm from './useLoginForm'
 
 const LoginPage = () => {
-  const { form, handleSubmit } = useLoginForm()
+  const { form, handleSubmit, isLoading } = useLoginForm()
 
   return (
     <form onSubmit={handleSubmit}>
@@ -31,7 +31,7 @@ const LoginPage = () => {
         size="md"
         {...form.getInputProps('password')}
       />
-      <Button type="submit" fullWidth mt="xl" size="md">
+      <Button type="submit" fullWidth mt="xl" size="md" loading={isLoading}>
         Login
       </Button>
       <Text color="gray" align="center" mt="xl">

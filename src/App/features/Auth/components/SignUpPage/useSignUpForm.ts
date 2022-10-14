@@ -1,7 +1,10 @@
 import { useForm, zodResolver } from '@mantine/form'
+import { useSignUp } from '../../api'
 import AuthFormSchema, { type AuthFormData } from '../../utils/AuthFormSchema'
 
 const useSignUpForm = () => {
+  const signUpMutation = useSignUp()
+
   const form = useForm<AuthFormData>({
     validate: zodResolver(AuthFormSchema),
     validateInputOnBlur: true,
@@ -13,10 +16,12 @@ const useSignUpForm = () => {
   })
 
   const handleSubmit = form.onSubmit(values => {
-    console.log(values)
+    signUpMutation.mutate(values)
   })
 
-  return { form, handleSubmit }
+  const isLoading = signUpMutation.isLoading
+
+  return { form, handleSubmit, isLoading }
 }
 
 export default useSignUpForm
