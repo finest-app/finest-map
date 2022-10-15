@@ -1,8 +1,9 @@
-import { ActionIcon, Navbar, Tooltip } from '@mantine/core'
+import { Navbar, Stack } from '@mantine/core'
 import { IconUser, IconLogout } from '@tabler/icons'
-import { Link } from 'react-router-dom'
 import { useLogout } from 'App/features/Auth/api'
 import useIsLoggedIn from 'App/features/Auth/hooks/useIsLoggedIn'
+import NavbarButton from './NavbarButton'
+import NavbarLink from './NavbarLink'
 
 const AppNavBar = () => {
   const isLoggedIn = useIsLoggedIn()
@@ -11,30 +12,16 @@ const AppNavBar = () => {
   return (
     <Navbar width={{ base: 64 }} p="xs">
       {/* Navbar content */}
-      <Navbar.Section>{null}</Navbar.Section>
-      <Navbar.Section>
-        <Tooltip label="Account" position="right">
-          <ActionIcon
-            component={Link}
-            to="/account"
-            size="xl"
-            radius="lg"
-            variant="gradient">
-            <IconUser />
-          </ActionIcon>
-        </Tooltip>
+      <Navbar.Section component={Stack}>
+        <NavbarLink label="Account" to="/account" icon={IconUser} />
         {isLoggedIn && (
-          <Tooltip label="Logout" position="right">
-            <ActionIcon
-              size="xl"
-              radius="lg"
-              loading={logoutMutation.isLoading}
-              onClick={() => {
-                logoutMutation.mutate()
-              }}>
-              <IconLogout />
-            </ActionIcon>
-          </Tooltip>
+          <NavbarButton
+            label="Logout"
+            icon={IconLogout}
+            onClick={() => {
+              logoutMutation.mutate()
+            }}
+          />
         )}
       </Navbar.Section>
     </Navbar>
