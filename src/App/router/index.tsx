@@ -6,17 +6,20 @@ import {
 } from 'App/features/Auth/components'
 import LoginPageLayout from 'App/features/Auth/components/LoginPageLayout'
 import Root from 'App/features/Root'
+import { FilesPage } from 'App/features/Files/components'
 import {
   createBrowserRouter,
   Route,
-  createRoutesFromElements
+  createRoutesFromElements,
+  Navigate
 } from 'react-router-dom'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
       <Route element={<Root />}>
-        <Route index element={null} />
+        <Route index element={<Navigate to="/files" replace />} />
+        <Route path="files" element={<FilesPage />} />
         <Route
           path="account"
           element={
