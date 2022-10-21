@@ -7,6 +7,7 @@ import {
 import LoginPageLayout from 'App/features/Auth/components/LoginPageLayout'
 import Root from 'App/features/Root'
 import { FilesPage } from 'App/features/Files/components'
+import { CreateFilePage, EditFilePage } from 'App/features/Editor/components'
 import {
   createBrowserRouter,
   Route,
@@ -19,7 +20,11 @@ const router = createBrowserRouter(
     <Route path="/">
       <Route element={<Root />}>
         <Route index element={<Navigate to="/files" replace />} />
-        <Route path="files" element={<FilesPage />} />
+        <Route path="files">
+          <Route index element={<FilesPage />} />
+          <Route path="create" element={<CreateFilePage />} />
+          <Route path=":id/edit" element={<EditFilePage />} />
+        </Route>
         <Route
           path="account"
           element={

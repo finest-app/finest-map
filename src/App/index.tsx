@@ -1,5 +1,6 @@
 import { MantineProvider } from '@mantine/core'
 import { NotificationsProvider } from '@mantine/notifications'
+import { ModalsProvider } from '@mantine/modals'
 import { RouterProvider } from 'react-router-dom'
 import { Talkr } from 'talkr'
 import { QueryClientProvider } from '@tanstack/react-query'
@@ -13,9 +14,11 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <MantineProvider withGlobalStyles withNormalizeCSS theme={mantineTheme}>
         <NotificationsProvider position="top-center">
-          <Talkr languages={languages} defaultLanguage="en_us">
-            <RouterProvider router={router} />
-          </Talkr>
+          <ModalsProvider>
+            <Talkr languages={languages} defaultLanguage="en_us">
+              <RouterProvider router={router} />
+            </Talkr>
+          </ModalsProvider>
         </NotificationsProvider>
       </MantineProvider>
     </QueryClientProvider>

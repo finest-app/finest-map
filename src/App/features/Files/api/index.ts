@@ -1,4 +1,4 @@
-import { useQuery, useMutation } from '@tanstack/react-query'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { createQueryKeys } from '@lukemorales/query-key-factory'
 import axios from 'App/shared/axios'
 import useIsLoggedIn from 'App/features/Auth/hooks/useIsLoggedIn'
@@ -11,6 +11,7 @@ import {
   WithData,
   WithId
 } from './types'
+import notify from 'App/shared/notify'
 
 const FILES_API_PATH = '/files'
 
@@ -61,9 +62,18 @@ export const useCreateFile = () => {
 }
 
 export const useRenameFile = () => {
-  const mutation = useMutation(({ id, ...params }: RenameFileDTO) => {
-    return axios.patch(FILES_API_PATH + '/rename/' + id, params)
-  })
+  const queryClient = useQueryClient()
+
+  const mutation = useMutation(
+    ({ id, ...params }: RenameFileDTO) => {
+      return axios.patch(FILES_API_PATH + '/rename/' + id, params)
+    },
+    {
+      onSuccess() {
+        queryClient.invalidateQueries({ queryKey: filesKeys._def })
+      }
+    }
+  )
 
   return mutation
 }
@@ -77,9 +87,19 @@ export const useEditFile = () => {
 }
 
 export const useDeleteFile = () => {
-  const mutation = useMutation(({ id }: DeleteFileDTO) => {
-    return axios.delete(FILES_API_PATH + '/delete/' + id)
-  })
+  const queryClient = useQueryClient()
+
+  const mutation = useMutation(
+    ({ id }: DeleteFileDTO) => {
+      return axios.delete(FILES_API_PATH + '/delete/' + id)
+    },
+    {
+      onSuccess() {
+        notify.success({ message: 'Successfully deleted' })
+        queryClient.invalidateQueries({ queryKey: filesKeys._def })
+      }
+    }
+  )
 
   return mutation
 }
