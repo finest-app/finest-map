@@ -1,4 +1,5 @@
 import { AppShell, Header } from '@mantine/core'
+import AppSuspense from 'App/shared/components/AppSuspense'
 import { Outlet } from 'react-router-dom'
 import AppNavBar from './components/AppNavBar'
 
@@ -20,8 +21,10 @@ const Root = () => {
               : theme.colors.gray[0]
         }
       })}>
-      <Outlet />
-      {/* Your application here */}
+      <AppSuspense>
+        <Outlet />
+        {/* Your application here */}
+      </AppSuspense>
     </AppShell>
   )
 }
