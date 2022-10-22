@@ -36,7 +36,8 @@ const FilesListItem = (file: FilesListItemProps) => {
     <Paper
       component="li"
       className="w-24 bg-transparent"
-      onContextMenu={handleContextMenu}>
+      onContextMenu={handleContextMenu}
+      withBorder={opened}>
       <Menu opened={opened} onClose={toggle} shadow="md" position="right-end">
         <Menu.Target>
           <Anchor
