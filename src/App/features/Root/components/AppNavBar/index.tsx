@@ -1,5 +1,5 @@
 import { Navbar, Stack } from '@mantine/core'
-import { IconFiles, IconUser, IconLogout } from '@tabler/icons'
+import { IconFiles, IconUser, IconLogout, IconSettings } from '@tabler/icons'
 import { useLogout } from 'App/features/Auth/api'
 import useIsLoggedIn from 'App/features/Auth/hooks/useIsLoggedIn'
 import NavbarButton from './NavbarButton'
@@ -15,6 +15,7 @@ const AppNavBar = () => {
       <Navbar.Section component={Stack}>
         <NavbarLink label="Files" to="/files" icon={IconFiles} />
         <NavbarLink label="Account" to="/account" icon={IconUser} />
+        <NavbarLink label="Settings" to="/settings" icon={IconSettings} />
         {isLoggedIn && (
           <NavbarButton
             label="Logout"

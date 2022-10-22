@@ -8,6 +8,7 @@ import LoginPageLayout from 'App/features/Auth/components/LoginPageLayout'
 import Root from 'App/features/Root'
 import { FilesPage } from 'App/features/Files/components'
 import { CreateFilePage, EditFilePage } from 'App/features/Editor/components'
+import { SettingsPage } from 'App/features/Settings/components'
 import {
   createBrowserRouter,
   Route,
@@ -33,6 +34,7 @@ const router = createBrowserRouter(
             </RequireAuth>
           }
         />
+        <Route path="settings" element={<SettingsPage />} />
       </Route>
       <Route element={<LoginPageLayout />}>
         <Route path="login" element={<LoginPage />} />
