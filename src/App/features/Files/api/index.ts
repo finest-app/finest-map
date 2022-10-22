@@ -8,7 +8,6 @@ import {
   EditFileDTO,
   FileData,
   RenameFileDTO,
-  WithData,
   WithId
 } from './types'
 import notify from 'App/shared/notify'
@@ -24,12 +23,9 @@ export const useFiles = () => {
 
   const query = useQuery(
     filesKeys._def,
-    () => axios.get<WithData<FileData[] | null>>(FILES_API_PATH),
+    () => axios.get<unknown, FileData[] | null>(FILES_API_PATH),
     {
-      enabled: isLoggedIn,
-      select({ data }) {
-        return data.data
-      }
+      enabled: isLoggedIn
     }
   )
 
@@ -41,12 +37,9 @@ export const useFile = ({ id }: WithId) => {
 
   const query = useQuery(
     filesKeys.show(id),
-    () => axios.get<WithData<FileData | null>>(FILES_API_PATH + '/' + id),
+    () => axios.get<FileData | null>(FILES_API_PATH + '/' + id),
     {
-      enabled: isLoggedIn,
-      select({ data }) {
-        return data.data
-      }
+      enabled: isLoggedIn
     }
   )
 

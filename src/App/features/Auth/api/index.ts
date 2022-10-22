@@ -34,9 +34,9 @@ export const useLogin = () => {
 
   const mutation = useMutation(
     (params: LoginDTO) =>
-      axios.post<LoginData>(AUTH_API_PATH + '/login', params),
+      axios.post<unknown, LoginData>(AUTH_API_PATH + '/login', params),
     {
-      onSuccess({ data }) {
+      onSuccess(data) {
         setAuthToken(data.authToken)
 
         navigate(from, { replace: true })

@@ -9,10 +9,6 @@ export interface FileData {
   updatedAt: string
 }
 
-export interface WithData<T> {
-  data: T
-}
-
 export interface WithId {
   id: number
 }
