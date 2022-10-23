@@ -1,5 +1,7 @@
+import FlowEditor from './FlowEditor'
+
 const EditFilePage = () => {
-  return <div>EditFilePage</div>
+  return <FlowEditor />
 }
 
 export default EditFilePage
