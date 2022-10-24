@@ -1,3 +1,4 @@
+import { Paper } from '@mantine/core'
 import AppSpotlight from 'App/shared/components/AppSpotlight'
 import { useFiles } from '../api'
 import useFilesActions from '../hooks/useFilesActions'
@@ -10,13 +11,15 @@ const FilesPage = () => {
   const filesQuery = useFiles()
 
   return (
-    <AppSpotlight actions={actions}>
-      <FilesList>
-        {filesQuery.data?.map(file => (
-          <FilesListItem key={file.id} {...file} />
-        ))}
-      </FilesList>
-    </AppSpotlight>
+    <Paper className="flex-1 p-sm">
+      <AppSpotlight actions={actions}>
+        <FilesList>
+          {filesQuery.data?.map(file => (
+            <FilesListItem key={file.id} {...file} />
+          ))}
+        </FilesList>
+      </AppSpotlight>
+    </Paper>
   )
 }
 
