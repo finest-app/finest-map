@@ -1,4 +1,4 @@
-import { MouseEventHandler, useReducer } from 'react'
+import { type MouseEventHandler } from 'react'
 import {
   Anchor,
   Image,
@@ -8,6 +8,7 @@ import {
   Stack,
   Text
 } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 import { Link } from 'react-router-dom'
 import { type FileData } from '../api/types'
 import { reactFlowLogo } from 'App/features/Files/assets'
@@ -25,7 +26,7 @@ type FilesListItemProps = FileData
 const FilesListItem = (file: FilesListItemProps) => {
   const { id, name } = file
 
-  const [opened, toggle] = useReducer(value => !value, false)
+  const [opened, { toggle }] = useDisclosure(false)
 
   const handleContextMenu: MouseEventHandler<HTMLLIElement> = event => {
     event.preventDefault()
