@@ -4,6 +4,7 @@ export interface FileData {
   type: 'json' | 'md'
   kind: 'flow' | 'markdown'
   source_id: string
+  sourceFile: SourceFileData
   owner_id: string
   createdAt: string
   updatedAt: string

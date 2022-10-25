@@ -1,4 +1,9 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  type UseQueryOptions
+} from '@tanstack/react-query'
 import { createQueryKeys } from '@lukemorales/query-key-factory'
 import axios from 'App/shared/axios'
 import useIsLoggedIn from 'App/features/Auth/hooks/useIsLoggedIn'
@@ -23,7 +28,7 @@ export const useFiles = () => {
 
   const query = useQuery(
     filesKeys._def,
-    () => axios.get<unknown, FileData[] | null>(FILES_API_PATH),
+    () => axios.get<unknown, Omit<FileData[], 'sourceFile'>>(FILES_API_PATH),
     {
       enabled: isLoggedIn
     }
@@ -32,14 +37,18 @@ export const useFiles = () => {
   return query
 }
 
-export const useFile = ({ id }: WithId) => {
+export const useFile = (
+  { id }: WithId,
+  options?: Pick<UseQueryOptions<FileData>, 'onSuccess'>
+) => {
   const isLoggedIn = useIsLoggedIn()
 
   const query = useQuery(
     filesKeys.show(id),
-    () => axios.get<FileData | null>(FILES_API_PATH + '/' + id),
+    () => axios.get<FileData>(FILES_API_PATH + '/' + id),
     {
-      enabled: isLoggedIn
+      enabled: isLoggedIn,
+      ...options
     }
   )
 
@@ -48,7 +57,7 @@ export const useFile = ({ id }: WithId) => {
 
 export const useCreateFile = () => {
   const mutation = useMutation((params: CreateFileDTO) =>
-    axios.post(FILES_API_PATH, params)
+    axios.post<unknown, FileData>(FILES_API_PATH, params)
   )
 
   return mutation

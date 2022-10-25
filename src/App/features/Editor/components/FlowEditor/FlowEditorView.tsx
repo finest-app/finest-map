@@ -5,6 +5,7 @@ import useFlowStore from '../../hooks/useFlowStore'
 
 const FlowEditorView = () => {
   const reactflowWrapperRef = useFlowStore(state => state.reactflowWrapperRef)
+  const defaultViewport = useFlowStore(state => state.defaultViewport)
   const nodes = useFlowStore(state => state.nodes)
   const edges = useFlowStore(state => state.edges)
   const onInit = useFlowStore(state => state.onInit)
@@ -17,6 +18,7 @@ const FlowEditorView = () => {
   return (
     <Paper ref={reactflowWrapperRef} className="h-full" radius="md">
       <ReactFlow
+        defaultViewport={defaultViewport}
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}

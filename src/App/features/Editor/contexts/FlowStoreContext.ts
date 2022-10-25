@@ -1,6 +1,6 @@
 import createContext from 'zustand/context'
-import createFlowStore from '../stores/createFlowStore'
+import { type FlowStore } from '../stores/createFlowStore'
 
-const FlowStoreContext = createContext<ReturnType<typeof createFlowStore>>()
+const FlowStoreContext = createContext<FlowStore>()
 
 export default FlowStoreContext

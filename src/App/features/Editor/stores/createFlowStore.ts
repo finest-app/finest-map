@@ -1,14 +1,14 @@
 import { type RefCallback } from 'react'
-import { createStore } from 'zustand'
+import { createStore, type StoreApi } from 'zustand'
 import {
   addEdge,
   applyNodeChanges,
   applyEdgeChanges,
   Position,
   type Node,
-  type Edge,
   type ReactFlowProps,
-  type ReactFlowInstance
+  type ReactFlowInstance,
+  type ReactFlowJsonObject
 } from 'reactflow'
 import { nanoid } from 'nanoid'
 
@@ -17,20 +17,7 @@ const nodeStyle = {
   height: 48
 }
 
-const initialNodes: Node[] = [
-  {
-    id: nanoid(),
-    sourcePosition: Position.Right,
-    type: 'input',
-    data: { label: 'Hello World' },
-    position: { x: 50, y: 50 },
-    style: nodeStyle
-  }
-]
-
 class InitialFlowState {
-  nodes: Node[] = initialNodes
-  edges: Edge[] = []
   connectingNodeId: string | null = null
   reactFlowInstance: ReactFlowInstance<unknown, unknown> | null = null
   reactflowWrapper: HTMLDivElement | null = null
@@ -39,6 +26,9 @@ class InitialFlowState {
 export type FlowState = Required<
   Pick<
     ReactFlowProps,
+    | 'nodes'
+    | 'edges'
+    | 'defaultViewport'
     | 'onInit'
     | 'onNodesChange'
     | 'onEdgesChange'
@@ -49,12 +39,18 @@ export type FlowState = Required<
 > &
   InitialFlowState & {
     reactflowWrapperRef: RefCallback<HTMLDivElement>
-    reset: () => void
   }
 
-const createFlowStore = () =>
+export type FlowStore = StoreApi<FlowState>
+
+const createFlowStore = (
+  reactFlowJsonObject: ReactFlowJsonObject<unknown, unknown>
+) =>
   createStore<FlowState>((set, get) => ({
     ...new InitialFlowState(),
+    nodes: reactFlowJsonObject.nodes,
+    edges: reactFlowJsonObject.edges,
+    defaultViewport: reactFlowJsonObject.viewport,
     reactflowWrapperRef(element) {
       set({ reactflowWrapper: element })
     },
@@ -110,9 +106,6 @@ const createFlowStore = () =>
           })
         }))
       }
-    },
-    reset() {
-      set(new InitialFlowState())
     }
   }))
 

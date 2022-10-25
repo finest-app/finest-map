@@ -24,7 +24,7 @@ const InitialTabLink = ({ to, leftIcon }: InitialTabLinkProps) => {
       leftIcon={<LeftIcon size={20} />}
       fullWidth
       size="md"
-      variant={match ? 'filled' : 'light'}>
+      variant={match ? 'gradient' : 'light'}>
       Cloud
     </Button>
   )
