@@ -2,6 +2,7 @@ import { Paper, Tabs, Stack, ScrollArea } from '@mantine/core'
 import { Outlet } from 'react-router-dom'
 import { IconCloud } from '@tabler/icons'
 import { Reorder } from 'framer-motion'
+import AppSuspense from 'App/shared/components/AppSuspense'
 import InitialTabLink from './InitialTabLink'
 import useEditFileNavigate from '../../hooks/useEditFileNavigate'
 import useEditorTabsStore from '../../stores/useEditorTabsStore'
@@ -40,7 +41,9 @@ const EditorTabs = () => {
           </Paper>
         )}
       </Stack>
-      <Outlet />
+      <AppSuspense>
+        <Outlet />
+      </AppSuspense>
     </Tabs>
   )
 }
