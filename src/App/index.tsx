@@ -8,6 +8,7 @@ import mantineTheme from 'App/config/mantineTheme'
 import router from 'App/router'
 import languages from './i18n/languages'
 import queryClient from './config/queryClient'
+import './config/dayjsConfig'
 
 const App = () => {
   return (

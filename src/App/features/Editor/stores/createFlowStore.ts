@@ -25,7 +25,7 @@ export const INITIAL_NODE_RECT = {
 
 class InitialFlowState {
   connectingNodeId: string | null = null
-  reactFlowInstance: ReactFlowInstance<unknown, unknown> | null = null
+  reactFlowInstance: ReactFlowInstance<NodeData, unknown> | null = null
   reactflowWrapper: HTMLDivElement | null = null
 }
 
@@ -45,12 +45,15 @@ export type FlowState = Required<
 > &
   InitialFlowState & {
     reactflowWrapperRef: RefCallback<HTMLDivElement>
+    getFlowInstanceObject: () =>
+      | ReactFlowJsonObject<NodeData, unknown>
+      | undefined
   }
 
 export type FlowStore = StoreApi<FlowState>
 
 const createFlowStore = (
-  reactFlowJsonObject: ReactFlowJsonObject<unknown, unknown>
+  reactFlowJsonObject: ReactFlowJsonObject<NodeData, unknown>
 ) =>
   createStore<FlowState>((set, get) => ({
     ...new InitialFlowState(),
@@ -59,6 +62,9 @@ const createFlowStore = (
     defaultViewport: reactFlowJsonObject.viewport,
     reactflowWrapperRef(element) {
       set({ reactflowWrapper: element })
+    },
+    getFlowInstanceObject() {
+      return get().reactFlowInstance?.toObject()
     },
     onInit(reactFlowInstance) {
       set({ reactFlowInstance })

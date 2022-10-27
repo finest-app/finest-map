@@ -2,6 +2,7 @@ import { Paper } from '@mantine/core'
 import ReactFlow, { Controls, type NodeTypes } from 'reactflow'
 import 'reactflow/dist/style.css'
 import useFlowStore from '../../hooks/useFlowStore'
+import useSetTabFileEffect from '../../hooks/useSetTabFileEffect'
 import TextUpdaterNode, { textUpdaterNodeName } from './TextUpdaterNode'
 
 const nodeTypes: NodeTypes = {
@@ -19,6 +20,8 @@ const FlowEditorView = () => {
   const onConnect = useFlowStore(state => state.onConnect)
   const onConnectStart = useFlowStore(state => state.onConnectStart)
   const onConnectEnd = useFlowStore(state => state.onConnectEnd)
+
+  useSetTabFileEffect()
 
   return (
     <Paper ref={reactflowWrapperRef} className="h-full" radius="md">
