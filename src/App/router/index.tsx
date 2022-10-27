@@ -1,4 +1,10 @@
 import {
+  createBrowserRouter,
+  Route,
+  createRoutesFromElements,
+  Navigate
+} from 'react-router-dom'
+import {
   RequireAuth,
   AccountPage,
   SignUpPage,
@@ -9,16 +15,11 @@ import Root from 'App/features/Root'
 import { FilesPage } from 'App/features/Files/components'
 import { EditFilePage, EditorTabs } from 'App/features/Editor/components'
 import { SettingsPage } from 'App/features/Settings/components'
-import {
-  createBrowserRouter,
-  Route,
-  createRoutesFromElements,
-  Navigate
-} from 'react-router-dom'
+import { NotFoundPage } from 'App/features/Error/components'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/">
+    <Route path="/" errorElement={<NotFoundPage />}>
       <Route element={<Root />}>
         <Route index element={<Navigate to="/files" replace />} />
         <Route path="files" element={<EditorTabs />}>
