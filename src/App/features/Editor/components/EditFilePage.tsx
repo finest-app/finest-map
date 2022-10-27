@@ -1,13 +1,13 @@
 import { Tabs } from '@mantine/core'
 import { useFile } from 'App/features/Files/api'
-import { useParams } from 'react-router-dom'
+import useFileId from '../hooks/useFileId'
 import useEditorTabsStore from '../stores/useEditorTabsStore'
 import FlowEditor from './FlowEditor'
 
 const EditFilePage = () => {
   const tabs = useEditorTabsStore(state => state.tabs)
   const addTab = useEditorTabsStore(state => state.addTab)
-  const { id: fileId } = useParams<'id'>()
+  const fileId = useFileId()
 
   useFile(
     { id: Number(fileId) },

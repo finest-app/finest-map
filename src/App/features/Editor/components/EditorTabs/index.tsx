@@ -1,11 +1,12 @@
 import { Paper, Tabs, Stack, ScrollArea } from '@mantine/core'
-import { Outlet, useParams } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import { IconCloud } from '@tabler/icons'
 import { Reorder } from 'framer-motion'
 import InitialTabLink from './InitialTabLink'
 import useEditFileNavigate from '../../hooks/useEditFileNavigate'
 import useEditorTabsStore from '../../stores/useEditorTabsStore'
 import EditorTab from './EditorTab'
+import useFileId from '../../hooks/useFileId'
 
 const EditorTabs = () => {
   const goEditFile = useEditFileNavigate()
@@ -15,7 +16,7 @@ const EditorTabs = () => {
 
   const hasEditorTabs = !!tabs.length
 
-  const { id: fileId } = useParams<'id'>()
+  const fileId = useFileId()
 
   return (
     <Tabs
