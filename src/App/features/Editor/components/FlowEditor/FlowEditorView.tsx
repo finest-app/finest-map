@@ -1,7 +1,12 @@
 import { Paper } from '@mantine/core'
-import ReactFlow, { Background, BackgroundVariant, Controls } from 'reactflow'
+import ReactFlow, { Controls, type NodeTypes } from 'reactflow'
 import 'reactflow/dist/style.css'
 import useFlowStore from '../../hooks/useFlowStore'
+import TextUpdaterNode, { textUpdaterNodeName } from './TextUpdaterNode'
+
+const nodeTypes: NodeTypes = {
+  [textUpdaterNodeName]: TextUpdaterNode
+}
 
 const FlowEditorView = () => {
   const reactflowWrapperRef = useFlowStore(state => state.reactflowWrapperRef)
@@ -18,6 +23,8 @@ const FlowEditorView = () => {
   return (
     <Paper ref={reactflowWrapperRef} className="h-full" radius="md">
       <ReactFlow
+        nodeTypes={nodeTypes}
+        disableKeyboardA11y
         defaultViewport={defaultViewport}
         nodes={nodes}
         edges={edges}
@@ -28,7 +35,6 @@ const FlowEditorView = () => {
         onConnectEnd={onConnectEnd}
         onInit={onInit}>
         <Controls />
-        <Background variant={BackgroundVariant.Lines} />
       </ReactFlow>
     </Paper>
   )

@@ -11,10 +11,16 @@ import {
   type ReactFlowJsonObject
 } from 'reactflow'
 import { nanoid } from 'nanoid'
+import { textUpdaterNodeName } from '../components/FlowEditor/TextUpdaterNode'
 
-const nodeStyle = {
+export interface NodeData {
+  content: string
+  isRoot: boolean
+}
+
+export const INITIAL_NODE_RECT = {
   width: 150,
-  height: 48
+  height: 62
 }
 
 class InitialFlowState {
@@ -85,16 +91,16 @@ const createFlowStore = (
 
         const { project, getZoom } = reactFlowInstance
 
-        const newNode: Node = {
+        const newNode: Node<NodeData> = {
           id,
+          type: textUpdaterNodeName,
           sourcePosition: Position.Right,
           targetPosition: Position.Left,
           position: project({
             x: event.clientX - left,
-            y: event.clientY - top - (nodeStyle.height / 2) * getZoom()
+            y: event.clientY - top - (INITIAL_NODE_RECT.height / 2) * getZoom()
           }),
-          style: nodeStyle,
-          data: { label: 'Type Something' }
+          data: { content: 'Type Something', isRoot: false }
         }
 
         set(state => ({
