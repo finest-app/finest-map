@@ -19,13 +19,13 @@ const InitialTabLink = ({ to, leftIcon }: InitialTabLinkProps) => {
 
   return (
     <Button
+      className="h-10"
       component={Link}
       to={to}
       leftIcon={<LeftIcon size={20} />}
       fullWidth
-      size="md"
       variant={match ? 'gradient' : 'light'}>
-      Cloud
+      Files
     </Button>
   )
 }

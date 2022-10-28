@@ -6,7 +6,7 @@ const FilesList = ({ children }: PropsWithChildren<unknown>) => {
   const [parent] = useAutoAnimate<HTMLUListElement>()
 
   return (
-    <List ref={parent} className="flex gap-md">
+    <List ref={parent} className="flex flex-wrap gap-md">
       {children}
     </List>
   )

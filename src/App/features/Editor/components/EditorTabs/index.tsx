@@ -1,4 +1,4 @@
-import { Paper, Tabs, Stack, ScrollArea } from '@mantine/core'
+import { Paper, Tabs, Stack } from '@mantine/core'
 import { Outlet } from 'react-router-dom'
 import { IconCloud } from '@tabler/icons'
 import { Reorder } from 'framer-motion'
@@ -27,20 +27,20 @@ const EditorTabs = () => {
       onTabChange={value => value && goEditFile(value)}
       orientation="vertical"
       keepMounted={false}>
-      <Stack className="min-w-[10rem]">
-        <Paper p="xs">
-          <InitialTabLink to="/files" leftIcon={IconCloud} />
-        </Paper>
-        {hasEditorTabs && (
-          <Paper component={ScrollArea} p="xs">
+      <Paper className="h-fit min-w-[10rem]">
+        <Stack spacing="xs" p="xs">
+          <section>
+            <InitialTabLink to="/files" leftIcon={IconCloud} />
+          </section>
+          {hasEditorTabs && (
             <Reorder.Group axis="y" values={tabs} onReorder={onReorder}>
               {tabs.map(tab => (
                 <EditorTab key={tab.file.id} tab={tab} />
               ))}
             </Reorder.Group>
-          </Paper>
-        )}
-      </Stack>
+          )}
+        </Stack>
+      </Paper>
       <AppSuspense>
         <Outlet />
       </AppSuspense>
