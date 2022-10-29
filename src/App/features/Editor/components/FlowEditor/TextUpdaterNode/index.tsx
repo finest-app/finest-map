@@ -1,13 +1,7 @@
 import { FocusEventHandler } from 'react'
 import { createStyles, Paper } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import {
-  type Node,
-  type NodeProps,
-  Handle,
-  Position,
-  useStoreApi
-} from 'reactflow'
+import { type Node, type NodeProps, Handle, useStoreApi } from 'reactflow'
 import {
   INITIAL_NODE_RECT,
   type NodeData
@@ -75,8 +69,8 @@ const TextUpdaterNode = ({
 
       {targetPosition && sourcePosition && (
         <>
-          {!data.isRoot && <Handle type="target" position={Position.Left} />}
-          <Handle type="source" position={Position.Right} />
+          {!data.isRoot && <Handle type="target" position={targetPosition} />}
+          <Handle type="source" position={sourcePosition} />
         </>
       )}
     </Paper>
