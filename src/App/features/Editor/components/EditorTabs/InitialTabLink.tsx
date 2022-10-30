@@ -28,7 +28,7 @@ const InitialTabLink = ({ to, leftIcon }: InitialTabLinkProps) => {
       onClick={close}
       leftIcon={<LeftIcon size={20} />}
       fullWidth
-      variant={match ? 'gradient' : 'light'}>
+      variant={match ? 'filled' : 'light'}>
       Files
     </Button>
   )

@@ -1,4 +1,9 @@
-import { ActionIcon, Tooltip, type TooltipProps } from '@mantine/core'
+import {
+  ActionIcon,
+  Tooltip,
+  useMantineTheme,
+  type TooltipProps
+} from '@mantine/core'
 import {
   Link,
   type LinkProps,
@@ -17,6 +22,8 @@ const NavbarLink = ({ label, to, icon }: NavbarLinkProps) => {
   const match = useMatch({ path: resolved.pathname + '/*', end: true })
   const Icon = icon
 
+  const theme = useMantineTheme()
+
   return (
     <Tooltip position="right" label={label}>
       <ActionIcon
@@ -24,7 +31,7 @@ const NavbarLink = ({ label, to, icon }: NavbarLinkProps) => {
         to={to}
         size="xl"
         radius="lg"
-        {...(match && { variant: 'gradient' })}>
+        {...(match && { variant: 'filled', color: theme.primaryColor })}>
         <Icon />
       </ActionIcon>
     </Tooltip>
