@@ -1,6 +1,6 @@
 import { Paper } from '@mantine/core'
 import ReactFlow, { Controls, type NodeTypes } from 'reactflow'
-import 'reactflow/dist/style.css'
+import 'reactflow/dist/base.css'
 import useFlowStore from '../../hooks/useFlowStore'
 import useSetTabFileEffect from '../../hooks/useSetTabFileEffect'
 import TextUpdaterNode, { textUpdaterNodeName } from './TextUpdaterNode'

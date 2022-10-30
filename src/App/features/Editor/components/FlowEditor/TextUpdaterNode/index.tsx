@@ -1,7 +1,7 @@
-import { FocusEventHandler } from 'react'
+import { useState, useEffect } from 'react'
 import { createStyles, Paper } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks'
 import { type Node, type NodeProps, Handle, useStoreApi } from 'reactflow'
+import ContentEditable from 'react-contenteditable'
 import {
   INITIAL_NODE_RECT,
   type NodeData
@@ -32,6 +32,7 @@ const TextUpdaterNode = ({
   id,
   data,
   selected,
+  dragging,
   targetPosition,
   sourcePosition
 }: TextUpdaterNode) => {
@@ -41,15 +42,11 @@ const TextUpdaterNode = ({
     .getState()
     .nodeInternals.get(id)
 
-  const handleBlur: FocusEventHandler<HTMLElement> = event => {
-    handler.close()
+  const [isEdit, setIsEdit] = useState(false)
 
-    if (currentNode) {
-      currentNode.data.content = event.target.innerHTML
-    }
-  }
-
-  const [isEdit, handler] = useDisclosure(false)
+  useEffect(() => {
+    setIsEdit(selected)
+  }, [selected])
 
   return (
     <Paper
@@ -59,12 +56,23 @@ const TextUpdaterNode = ({
         isEdit && 'nodrag cursor-auto'
       )}
       p="md">
-      <article
+      <ContentEditable
+        tagName="article"
         className="prose focus-within:outline-none"
-        contentEditable={selected}
-        dangerouslySetInnerHTML={{ __html: data.content }}
-        onClick={() => selected && handler.open()}
-        onBlur={handleBlur}
+        html={data.content}
+        disabled={!selected || dragging}
+        onChange={() => {
+          //noop
+        }}
+        onClick={() => {
+          setIsEdit(true)
+        }}
+        onBlur={event => {
+          if (currentNode) {
+            currentNode.data.content = event.target.innerHTML
+          }
+          setIsEdit(false)
+        }}
       />
 
       {targetPosition && sourcePosition && (
