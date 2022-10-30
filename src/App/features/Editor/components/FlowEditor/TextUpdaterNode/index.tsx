@@ -50,6 +50,8 @@ const TextUpdaterNode = ({
 
   const { articleRef, styloEditorRef } = useStyloEditor()
 
+  const disabledContentEditable = !selected || dragging
+
   return (
     <Paper
       className={cx(
@@ -64,7 +66,7 @@ const TextUpdaterNode = ({
         tagName="article"
         className="prose focus-within:outline-none"
         html={data.content}
-        disabled={!selected || dragging}
+        disabled={disabledContentEditable}
         onChange={() => {
           //noop
         }}
@@ -77,7 +79,7 @@ const TextUpdaterNode = ({
           }
         }}
       />
-      <stylo-editor ref={styloEditorRef} />
+      {!disabledContentEditable && <stylo-editor ref={styloEditorRef} />}
       {targetPosition && sourcePosition && (
         <>
           {!data.isRoot && <Handle type="target" position={targetPosition} />}
