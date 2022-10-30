@@ -9,7 +9,7 @@ const AccentColorSetting = () => {
 
   const colors = Object.keys(theme.colors).map(color => ({
     name: color,
-    value: theme.colors[color][6]
+    value: theme.colors[color][theme.fn.primaryShade()]
   }))
 
   return (

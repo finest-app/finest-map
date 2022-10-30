@@ -21,7 +21,7 @@ const useStyles = createStyles(theme => ({
     outlineWidth: 1
   },
   selected: {
-    outlineColor: theme.primaryColor,
+    outlineColor: theme.fn.primaryColor(),
     outlineWidth: 2
   }
 }))
