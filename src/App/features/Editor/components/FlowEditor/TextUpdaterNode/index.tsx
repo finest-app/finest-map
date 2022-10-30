@@ -6,12 +6,12 @@ import {
   INITIAL_NODE_RECT,
   type NodeData
 } from 'App/features/Editor/stores/createFlowStore'
+import useStyloEditor from 'App/features/Editor/hooks/useStyloEditor'
 
 export const textUpdaterNodeName = 'textUpdater'
 
 const useStyles = createStyles(theme => ({
   base: {
-    minWidth: INITIAL_NODE_RECT.width,
     minHeight: INITIAL_NODE_RECT.height,
     outlineColor:
       theme.colorScheme === 'dark'
@@ -48,6 +48,8 @@ const TextUpdaterNode = ({
     setIsEdit(selected)
   }, [selected])
 
+  const { articleRef, styloEditorRef } = useStyloEditor()
+
   return (
     <Paper
       className={cx(
@@ -55,8 +57,10 @@ const TextUpdaterNode = ({
         selected && classes.selected,
         isEdit && 'nodrag cursor-auto'
       )}
-      p="md">
+      py="lg"
+      px="2.45rem">
       <ContentEditable
+        innerRef={articleRef}
         tagName="article"
         className="prose focus-within:outline-none"
         html={data.content}
@@ -71,10 +75,9 @@ const TextUpdaterNode = ({
           if (currentNode) {
             currentNode.data.content = event.target.innerHTML
           }
-          setIsEdit(false)
         }}
       />
-
+      <stylo-editor ref={styloEditorRef} />
       {targetPosition && sourcePosition && (
         <>
           {!data.isRoot && <Handle type="target" position={targetPosition} />}

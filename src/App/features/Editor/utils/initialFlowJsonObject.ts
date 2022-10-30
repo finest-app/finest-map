@@ -2,6 +2,7 @@ import { nanoid } from 'nanoid'
 import { type ReactFlowJsonObject, Position } from 'reactflow'
 import { textUpdaterNodeName } from '../components/FlowEditor/TextUpdaterNode'
 import { type NodeData } from '../stores/createFlowStore'
+import toStyloContent from './toStyloContent'
 
 const initialFlowJsonObject: ReactFlowJsonObject<NodeData, unknown> = {
   nodes: [
@@ -10,7 +11,7 @@ const initialFlowJsonObject: ReactFlowJsonObject<NodeData, unknown> = {
       sourcePosition: Position.Right,
       type: textUpdaterNodeName,
       data: {
-        content: 'Hello World!',
+        content: toStyloContent('Hello World!'),
         isRoot: true
       },
       position: {

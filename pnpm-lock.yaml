@@ -10,6 +10,7 @@ specifiers:
   '@mantine/modals': ^5.6.0
   '@mantine/notifications': ^5.5.5
   '@mantine/spotlight': ^5.5.5
+  '@papyrs/stylo': ^0.0.39
   '@tabler/icons': ^1.103.0
   '@tailwindcss/typography': ^0.5.7
   '@tanstack/react-query': ^4.10.3
@@ -58,6 +59,7 @@ dependencies:
   '@mantine/modals': 5.6.0_peoatue7sckyfiogasz7flkvpm
   '@mantine/notifications': 5.5.5_peoatue7sckyfiogasz7flkvpm
   '@mantine/spotlight': 5.5.5_peoatue7sckyfiogasz7flkvpm
+  '@papyrs/stylo': 0.0.39
   '@tabler/icons': 1.103.0_biqbaboplfbrettd7655fr4n2y
   '@tanstack/react-query': 4.10.3_biqbaboplfbrettd7655fr4n2y
   axios: 1.1.2
@@ -1372,6 +1374,10 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
+  /@deckdeckgo/utils/5.1.0:
+    resolution: {integrity: sha512-ue/1BXkDBZ9k+Tqs3vyCRIjqxjPnl06ab9WGhGubAXoRtJIE7ZN58/pbLsPCYc4xFcY0TPH3tsWhE7eF/FU8Ew==}
+    dev: false
+
   /@emotion/babel-plugin/11.10.2:
     resolution: {integrity: sha512-xNQ57njWTFVfPAc3cjfuaPdsgLp5QOSuRsj9MA6ndEhH/AzuZM86qIQzt6rq+aGBwj3n5/TkLmU5lhAfdRmogA==}
     peerDependencies:
@@ -1813,6 +1819,12 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
     dev: true
+
+  /@papyrs/stylo/0.0.39:
+    resolution: {integrity: sha512-YQJWjTIz5o2uWDmxVvgHDZhim+ujoRi/mq9zUBLHoeeuEvVIhg1r7FZeDuBTCamCYbikB+qp5tCPkUf3aCXTOg==}
+    dependencies:
+      '@deckdeckgo/utils': 5.1.0
+    dev: false
 
   /@radix-ui/number/1.0.0:
     resolution: {integrity: sha512-Ofwh/1HX69ZfJRiRBMTy7rgjAzHmwe4kW9C9Y99HTRUcYLUuVT0KESFj15rPjRgKJs20GPq8Bm5aEDJ8DuA3vA==}

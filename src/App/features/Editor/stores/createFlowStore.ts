@@ -12,6 +12,7 @@ import {
 } from 'reactflow'
 import { nanoid } from 'nanoid'
 import { textUpdaterNodeName } from '../components/FlowEditor/TextUpdaterNode'
+import toStyloContent from '../utils/toStyloContent'
 
 export interface NodeData {
   content: string
@@ -19,8 +20,7 @@ export interface NodeData {
 }
 
 export const INITIAL_NODE_RECT = {
-  width: 150,
-  height: 62
+  height: 68
 }
 
 class InitialFlowState {
@@ -106,7 +106,7 @@ const createFlowStore = (
             x: event.clientX - left,
             y: event.clientY - top - (INITIAL_NODE_RECT.height / 2) * getZoom()
           }),
-          data: { content: 'Type Something', isRoot: false }
+          data: { content: toStyloContent('Type Something'), isRoot: false }
         }
 
         set(state => ({
