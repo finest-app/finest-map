@@ -47,7 +47,11 @@ const EditorTab = ({ tab }: EditorTabProps) => {
       position="right-start">
       <Menu.Target>
         <Reorder.Item value={tab} onContextMenu={handleContextMenu}>
-          <Tooltip label={file.name} position="bottom-end" openDelay={500}>
+          <Tooltip
+            disabled={opened}
+            label={file.name}
+            position="bottom-end"
+            openDelay={500}>
             <Tabs.Tab
               className={cx('w-full transition-colors', classes.tabLabel)}
               icon={<IconFile size={20} />}
