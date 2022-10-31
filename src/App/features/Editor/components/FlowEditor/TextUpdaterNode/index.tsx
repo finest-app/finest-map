@@ -1,32 +1,29 @@
 import { useState, useEffect } from 'react'
-import { createStyles, Paper } from '@mantine/core'
+import { createStyles, Paper, ThemeIcon } from '@mantine/core'
 import { type Node, type NodeProps, Handle, useStoreApi } from 'reactflow'
 import ContentEditable from 'react-contenteditable'
+import { IconPlus } from '@tabler/icons'
 import {
   INITIAL_NODE_RECT,
   type NodeData
 } from 'App/features/Editor/stores/createFlowStore'
 import useStyloEditor from 'App/features/Editor/hooks/useStyloEditor'
+import useAppSettingsStore from 'App/features/Settings/stores/useAppSettingsStore'
 
 export const textUpdaterNodeName = 'textUpdater'
 
 const useStyles = createStyles(theme => ({
   base: {
-    minHeight: INITIAL_NODE_RECT.height,
-    outlineColor:
-      theme.colorScheme === 'dark'
-        ? theme.colors.dark[4]
-        : theme.colors.gray[3],
-    outlineStyle: 'solid',
-    outlineWidth: 1
+    minHeight: INITIAL_NODE_RECT.height
   },
   selected: {
     outlineColor: theme.fn.primaryColor(),
+    outlineStyle: 'solid',
     outlineWidth: 2
   }
 }))
 
-type TextUpdaterNode = NodeProps<NodeData>
+type TextUpdaterNodeProps = NodeProps<NodeData>
 
 const TextUpdaterNode = ({
   id,
@@ -35,7 +32,7 @@ const TextUpdaterNode = ({
   dragging,
   targetPosition,
   sourcePosition
-}: TextUpdaterNode) => {
+}: TextUpdaterNodeProps) => {
   const { classes, cx } = useStyles()
 
   const currentNode: Node<NodeData> | undefined = useStoreApi()
@@ -52,6 +49,8 @@ const TextUpdaterNode = ({
 
   const disabledContentEditable = !selected || dragging
 
+  const colorScheme = useAppSettingsStore(state => state.colorScheme)
+
   return (
     <Paper
       className={cx(
@@ -60,11 +59,15 @@ const TextUpdaterNode = ({
         isEdit && 'nodrag cursor-auto'
       )}
       py="lg"
-      px="2.45rem">
+      pl="2.45rem"
+      pr="1.8rem">
       <ContentEditable
         innerRef={articleRef}
         tagName="article"
-        className="prose focus-within:outline-none"
+        className={cx(
+          'prose-lg prose focus-within:outline-none',
+          colorScheme === 'dark' && 'prose-invert'
+        )}
         html={data.content}
         disabled={disabledContentEditable}
         onChange={() => {
@@ -82,8 +85,21 @@ const TextUpdaterNode = ({
       {!disabledContentEditable && <stylo-editor ref={styloEditorRef} />}
       {targetPosition && sourcePosition && (
         <>
-          {!data.isRoot && <Handle type="target" position={targetPosition} />}
-          <Handle type="source" position={sourcePosition} />
+          {!data.isRoot && (
+            <Handle
+              className="invisible"
+              type="target"
+              position={targetPosition}
+            />
+          )}
+          <Handle
+            className={cx(selected ? 'visible' : 'invisible')}
+            type="source"
+            position={sourcePosition}>
+            <ThemeIcon size="sm" radius="xl">
+              <IconPlus size={14} />
+            </ThemeIcon>
+          </Handle>
         </>
       )}
     </Paper>

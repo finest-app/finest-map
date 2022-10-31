@@ -4,6 +4,7 @@ import 'reactflow/dist/base.css'
 import useFlowStore from '../../hooks/useFlowStore'
 import useSetTabFileEffect from '../../hooks/useSetTabFileEffect'
 import TextUpdaterNode, { textUpdaterNodeName } from './TextUpdaterNode'
+import FlowHandleStyles from './FlowHandleStyles'
 
 const nodeTypes: NodeTypes = {
   [textUpdaterNodeName]: TextUpdaterNode
@@ -25,6 +26,7 @@ const FlowEditorView = () => {
 
   return (
     <Paper ref={reactflowWrapperRef} className="h-full" radius="md">
+      <FlowHandleStyles />
       <ReactFlow
         nodeTypes={nodeTypes}
         disableKeyboardA11y

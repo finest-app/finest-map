@@ -20,7 +20,7 @@ export interface NodeData {
 }
 
 export const INITIAL_NODE_RECT = {
-  height: 68
+  height: 72
 }
 
 class InitialFlowState {
