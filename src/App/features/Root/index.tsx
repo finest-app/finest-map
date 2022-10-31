@@ -1,9 +1,10 @@
 import { AppShell, useMantineTheme } from '@mantine/core'
 import { useMediaQuery } from '@mantine/hooks'
-import AppSuspense from 'App/shared/components/AppSuspense'
 import { Outlet } from 'react-router-dom'
+import AppSuspense from 'App/shared/components/AppSuspense'
 import AppHeader from './components/AppHeader'
 import AppNavBar from './components/AppNavBar'
+import { EditorTabsDrawer } from '../Editor/components'
 
 const Root = () => {
   const theme = useMantineTheme()
@@ -14,6 +15,7 @@ const Root = () => {
       padding={matches ? 'md' : 0}
       navbar={<AppNavBar />}
       header={<AppHeader />}
+      aside={<EditorTabsDrawer />}
       styles={theme => ({
         main: {
           backgroundColor:
