@@ -1,6 +1,8 @@
-import en_us from './en_us.json'
-import zh_cn from './zh_cn.json'
+import en from './en.json'
+import cn from './cn.json'
 
-const languages = { en_us, zh_cn }
+const languages = { en, cn }
+
+export type AppLanguage = keyof typeof languages
 
 export default languages

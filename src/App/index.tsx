@@ -9,9 +9,13 @@ import router from 'App/router'
 import languages from './i18n/languages'
 import queryClient from './config/queryClient'
 import './config/dayjsConfig'
+import useAppSettingsStore from './features/Settings/stores/useAppSettingsStore'
+import SyncSettingsLanguage from './i18n/SyncSettingsLanguage'
 
 const App = () => {
   const mantineThemeConfig = useMantineThemeConfig()
+
+  const language = useAppSettingsStore.getState().language
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -21,8 +25,10 @@ const App = () => {
         theme={mantineThemeConfig}>
         <NotificationsProvider position="top-center">
           <ModalsProvider>
-            <Talkr languages={languages} defaultLanguage="en_us">
-              <RouterProvider router={router} />
+            <Talkr languages={languages} defaultLanguage={language}>
+              <SyncSettingsLanguage>
+                <RouterProvider router={router} />
+              </SyncSettingsLanguage>
             </Talkr>
           </ModalsProvider>
         </NotificationsProvider>

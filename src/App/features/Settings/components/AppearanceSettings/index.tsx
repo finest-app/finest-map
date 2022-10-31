@@ -4,12 +4,10 @@ import ColorSchemeSetting from './ColorSchemeSetting'
 
 const AppearanceSettings = () => {
   return (
-    <>
-      <SettingsList title="🎨 Appearance">
-        <ColorSchemeSetting />
-        <AccentColorSetting />
-      </SettingsList>
-    </>
+    <SettingsList title="🎨 Appearance">
+      <ColorSchemeSetting />
+      <AccentColorSetting />
+    </SettingsList>
   )
 }
 export default AppearanceSettings

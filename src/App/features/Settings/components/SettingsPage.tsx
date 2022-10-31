@@ -1,5 +1,6 @@
 import { Container, Paper } from '@mantine/core'
 import AppearanceSettings from './AppearanceSettings'
+import LanguagesSettings from './LanguagesSettings'
 
 const SettingsPage = () => {
   return (
@@ -9,6 +10,7 @@ const SettingsPage = () => {
       size="md"
       p="md">
       <AppearanceSettings />
+      <LanguagesSettings />
     </Paper>
   )
 }
