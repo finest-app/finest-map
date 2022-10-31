@@ -70,15 +70,12 @@ const TextUpdaterNode = ({
         )}
         html={data.content}
         disabled={disabledContentEditable}
-        onChange={() => {
-          //noop
-        }}
         onClick={() => {
           setIsEdit(true)
         }}
-        onBlur={event => {
+        onChange={event => {
           if (currentNode) {
-            currentNode.data.content = event.target.innerHTML
+            currentNode.data.content = event.target.value
           }
         }}
       />
