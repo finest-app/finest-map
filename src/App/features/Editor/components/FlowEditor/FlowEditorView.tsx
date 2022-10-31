@@ -30,6 +30,7 @@ const FlowEditorView = () => {
       <ReactFlow
         nodeTypes={nodeTypes}
         disableKeyboardA11y
+        deleteKeyCode={null}
         defaultViewport={defaultViewport}
         nodes={nodes}
         edges={edges}

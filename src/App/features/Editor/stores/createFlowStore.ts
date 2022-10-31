@@ -5,6 +5,7 @@ import {
   applyNodeChanges,
   applyEdgeChanges,
   Position,
+  getOutgoers,
   type Node,
   type ReactFlowProps,
   type ReactFlowInstance,
@@ -48,6 +49,7 @@ export type FlowState = Required<
     getFlowInstanceObject: () =>
       | ReactFlowJsonObject<NodeData, unknown>
       | undefined
+    deleteNodeById: (nodeId: string) => void
   }
 
 export type FlowStore = StoreApi<FlowState>
@@ -65,6 +67,22 @@ const createFlowStore = (
     },
     getFlowInstanceObject() {
       return get().reactFlowInstance?.toObject()
+    },
+    deleteNodeById(nodeId) {
+      const { nodes, edges } = get()
+
+      const node = nodes.find(node => node.id === nodeId)
+
+      if (node) {
+        const childNodeIdSet = new Set(
+          getOutgoers(node, nodes, edges).map(node => node.id)
+        ).add(node.id)
+
+        set(state => ({
+          nodes: state.nodes.filter(node => !childNodeIdSet.has(node.id)),
+          edges: state.edges.filter(edge => !childNodeIdSet.has(edge.target))
+        }))
+      }
     },
     onInit(reactFlowInstance) {
       set({ reactFlowInstance })

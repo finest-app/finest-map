@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react'
-import { createStyles, Paper, ThemeIcon } from '@mantine/core'
+import { ActionIcon, createStyles, Paper, ThemeIcon } from '@mantine/core'
 import { type Node, type NodeProps, Handle, useStoreApi } from 'reactflow'
 import ContentEditable from 'react-contenteditable'
-import { IconPlus } from '@tabler/icons'
+import { IconPlus, IconX } from '@tabler/icons'
 import {
   INITIAL_NODE_RECT,
   type NodeData
 } from 'App/features/Editor/stores/createFlowStore'
 import useStyloEditor from 'App/features/Editor/hooks/useStyloEditor'
 import useAppSettingsStore from 'App/features/Settings/stores/useAppSettingsStore'
+import useFlowStore from 'App/features/Editor/hooks/useFlowStore'
 
 export const textUpdaterNodeName = 'textUpdater'
 
@@ -44,6 +45,8 @@ const TextUpdaterNode = ({
   useEffect(() => {
     setIsEdit(selected)
   }, [selected])
+
+  const deleteNodeById = useFlowStore(state => state.deleteNodeById)
 
   const { articleRef, styloEditorRef } = useStyloEditor()
 
@@ -98,6 +101,17 @@ const TextUpdaterNode = ({
             </ThemeIcon>
           </Handle>
         </>
+      )}
+      {!data.isRoot && selected && (
+        <ActionIcon
+          className="absolute -top-2.5 -left-2.5"
+          onClick={() => deleteNodeById(id)}
+          color="red"
+          variant="filled"
+          size="xs"
+          radius="xl">
+          <IconX size={14} />
+        </ActionIcon>
       )}
     </Paper>
   )
