@@ -81,9 +81,18 @@ export const useRenameFile = () => {
 }
 
 export const useEditFile = () => {
-  const mutation = useMutation(({ id, ...params }: EditFileDTO) => {
-    return axios.patch(FILES_API_PATH + '/edit/' + id, params)
-  })
+  const queryClient = useQueryClient()
+
+  const mutation = useMutation(
+    ({ id, ...params }: EditFileDTO) => {
+      return axios.patch(FILES_API_PATH + '/edit/' + id, params)
+    },
+    {
+      onSuccess() {
+        queryClient.invalidateQueries({ queryKey: filesKeys._def })
+      }
+    }
+  )
 
   return mutation
 }

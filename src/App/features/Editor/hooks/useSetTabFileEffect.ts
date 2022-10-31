@@ -18,12 +18,15 @@ const useSetTabFileEffect = () => {
   const setTabFile = useEditorTabsStore(state => state.setTabFile)
 
   const setTabFileHandler = useCallback(async () => {
+    const fileName = useEditorTabsStore.getState().getTab(Number(fileId))
+      ?.file.name
+
     const flowInstanceObject = getFlowInstanceObject()
 
-    if (fileId && flowInstanceObject) {
+    if (fileId && fileName && flowInstanceObject) {
       const raw = JSON.stringify(flowInstanceObject)
 
-      await editFileMutateAsync({ id: Number(fileId), raw })
+      await editFileMutateAsync({ id: Number(fileId), name: fileName, raw })
 
       setTabFile(Number(fileId), raw)
     }

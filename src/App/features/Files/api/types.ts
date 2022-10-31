@@ -28,6 +28,7 @@ export interface RenameFileDTO extends WithId {
 }
 
 export interface EditFileDTO extends WithId {
+  name: string
   raw: string
 }
 
