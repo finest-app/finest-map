@@ -28,6 +28,7 @@ const NavbarLink = ({ label, to, icon }: NavbarLinkProps) => {
     <Tooltip position="right" label={label}>
       <ActionIcon
         component={Link}
+        className="transition-colors duration-200"
         to={to}
         size="xl"
         radius="lg"
