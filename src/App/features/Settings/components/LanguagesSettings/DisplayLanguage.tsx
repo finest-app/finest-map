@@ -1,4 +1,5 @@
 import { Select } from '@mantine/core'
+import { useAutocompleteT } from 'App/i18n'
 import { type AppLanguage } from 'App/i18n/languages'
 import useAppSettingsStore from '../../stores/useAppSettingsStore'
 import SettingsListItem from '../SettingsListItem'
@@ -16,9 +17,11 @@ const languageSelectData: LangualgeData[] = [
 const DisplayLanguage = () => {
   const language = useAppSettingsStore(state => state.language)
 
+  const { T } = useAutocompleteT()
+
   return (
     <SettingsListItem
-      name="Display language"
+      name={T('settings.display_language')}
       control={
         <Select
           value={language}

@@ -1,4 +1,5 @@
 import { ColorSwatch, Group, useMantineTheme, CheckIcon } from '@mantine/core'
+import { useAutocompleteT } from 'App/i18n'
 import useAppSettingsStore from '../../stores/useAppSettingsStore'
 import SettingsListItem from '../SettingsListItem'
 
@@ -12,9 +13,11 @@ const AccentColorSetting = () => {
     value: theme.colors[color][theme.fn.primaryShade()]
   }))
 
+  const { T } = useAutocompleteT()
+
   return (
     <SettingsListItem
-      name="Accent color"
+      name={T('settings.accent_color')}
       control={
         <Group spacing="xs">
           {colors.map(color => (

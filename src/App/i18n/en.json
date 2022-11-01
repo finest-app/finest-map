@@ -14,6 +14,15 @@
     "sign_up_for_free": "Sign Up for free",
     "login_failure": "email or password is invalid."
   },
+  "settings": {
+    "appearance": "Appearance",
+    "color_scheme": "Color scheme",
+    "light": "Light",
+    "dark": "Dark",
+    "accent_color": "Accent color",
+    "languages": "Languages",
+    "display_language": "Display language"
+  },
   "form": {
     "invalid_name": "Your name must be between 4 and 16 characters and contain only alphanumerics, dashes and underscores.",
     "invalid_email": "Please enter a valid email.",

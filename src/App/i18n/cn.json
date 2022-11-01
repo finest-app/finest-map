@@ -14,6 +14,15 @@
     "sign_up_for_free": "免费注册",
     "login_failure": "邮箱或密码不正确"
   },
+  "settings": {
+    "appearance": "外观",
+    "color_scheme": "配色方案",
+    "light": "浅色",
+    "dark": "深色",
+    "accent_color": "强调色",
+    "languages": "语言",
+    "display_language": "显示语言"
+  },
   "form": {
     "invalid_name": "用户名长度须在4到16个字符之间，只能包含字母、数字、破折号和下划线",
     "invalid_email": "请输入有效的邮箱地址",
