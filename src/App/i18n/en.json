@@ -1,1 +1,22 @@
-{}
+{
+  "auth": {
+    "signUp": "Sign Up",
+    "login": "Log In",
+    "name": "Name",
+    "your_name": "Your Name",
+    "email": "Email",
+    "password": "Password",
+    "your_password": "Your password",
+    "create_new_account": "Create new account.",
+    "already_have_an_account": "Already have an account?",
+    "welcome_back_to_finest_map": "Welcome back to Finest Map!",
+    "do_not_have_an_account": "Don't have an account?",
+    "sign_up_for_free": "Sign Up for free",
+    "login_failure": "email or password is invalid."
+  },
+  "form": {
+    "invalid_name": "Your name must be between 4 and 16 characters and contain only alphanumerics, dashes and underscores.",
+    "invalid_email": "Please enter a valid email.",
+    "invalid_password": "Your password must be between 6 and 12 characters and contains only alphanumerics."
+  }
+}

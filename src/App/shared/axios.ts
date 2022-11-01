@@ -1,6 +1,7 @@
 import Axios, { AxiosError, AxiosRequestConfig } from 'axios'
 import env from './env'
 import notify from './notify'
+import { autocompleteTr } from 'App/i18n'
 import useAppStore from './useAppStore'
 
 const authRequestInterceptor = (config: AxiosRequestConfig) => {
@@ -26,13 +27,20 @@ axios.interceptors.response.use(
   },
   (error: AxiosError) => {
     const message =
-      (error.response?.data as { message?: string })?.message ?? error.message
-
-    notify.error({ message })
+      (error.response?.data as { data?: { message?: string } })?.data
+        ?.message ?? error.message
 
     switch (error.response?.status) {
       case 401:
         useAppStore.getState().removeAuthToken()
+
+        if (message === 'Invalid credentials') {
+          notify.error({ message: autocompleteTr('auth.login_failure') })
+        }
+
+        break
+      default:
+        notify.error({ message })
         break
     }
 

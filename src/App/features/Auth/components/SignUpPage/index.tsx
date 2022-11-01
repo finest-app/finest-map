@@ -8,27 +8,32 @@ import {
 } from '@mantine/core'
 import { Link } from 'react-router-dom'
 import useSignUpForm from './useSignUpForm'
+import { useAutocompleteT } from 'App/i18n'
 
 const SignUpPage = () => {
   const { form, handleSubmit, isLoading } = useSignUpForm()
 
+  const { T } = useAutocompleteT()
+
   return (
     <>
       <Title className="mb-12" order={2} align="center" mt="md">
-        Create new account.
+        {T('auth.create_new_account')}
       </Title>
 
       <form onSubmit={handleSubmit}>
         <TextInput
-          label="Name"
-          placeholder="Your Name"
+          autoComplete="username"
+          label={T('auth.name')}
+          placeholder={T('auth.your_name')}
           required
           size="md"
           {...form.getInputProps('name')}
         />
         <TextInput
+          autoComplete="email"
           type="email"
-          label="Email"
+          label={T('auth.email')}
           placeholder="hello@gmail.com"
           required
           mt="md"
@@ -36,21 +41,22 @@ const SignUpPage = () => {
           {...form.getInputProps('email')}
         />
         <PasswordInput
-          label="Password"
-          placeholder="Your password"
+          autoComplete="new-password"
+          label={T('auth.password')}
+          placeholder={T('auth.your_password')}
           required
           mt="md"
           size="md"
           {...form.getInputProps('password')}
         />
         <Button type="submit" fullWidth mt="xl" size="md" loading={isLoading}>
-          Sign Up
+          {T('auth.signUp')}
         </Button>
 
         <Text color="gray" align="center" mt="xl">
-          Already have an account?{' '}
+          {T('auth.already_have_an_account')}{' '}
           <Anchor component={Link} to="/login" weight="bold">
-            Log In
+            {T('auth.login')}
           </Anchor>
         </Text>
       </form>

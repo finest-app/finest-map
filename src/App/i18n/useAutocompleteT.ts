@@ -1,4 +1,4 @@
-import { useT, Autocomplete, TParams, tr } from 'talkr'
+import { type Autocomplete, type TParams, useT, tr } from 'talkr'
 import en from './en.json'
 
 type Key = Autocomplete<typeof en>
