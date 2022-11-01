@@ -1,10 +1,11 @@
 import { Paper } from '@mantine/core'
-import ReactFlow, { Controls, type NodeTypes } from 'reactflow'
+import ReactFlow, { type NodeTypes } from 'reactflow'
 import 'reactflow/dist/base.css'
 import useFlowStore from '../../hooks/useFlowStore'
 import useSetTabFileEffect from '../../hooks/useSetTabFileEffect'
 import TextUpdaterNode, { textUpdaterNodeName } from './TextUpdaterNode'
 import FlowHandleStyles from './FlowHandleStyles'
+import FlowControls from './FlowControls'
 
 const nodeTypes: NodeTypes = {
   [textUpdaterNodeName]: TextUpdaterNode
@@ -39,8 +40,9 @@ const FlowEditorView = () => {
         onConnect={onConnect}
         onConnectStart={onConnectStart}
         onConnectEnd={onConnectEnd}
-        onInit={onInit}>
-        <Controls />
+        onInit={onInit}
+        proOptions={{ hideAttribution: true }}>
+        <FlowControls />
       </ReactFlow>
     </Paper>
   )
