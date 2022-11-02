@@ -20,7 +20,12 @@ import { NotFoundPage } from 'App/features/Error/components'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" errorElement={<NotFoundPage />}>
-      <Route element={<Root />}>
+      <Route
+        element={
+          <RequireAuth>
+            <Root />
+          </RequireAuth>
+        }>
         <Route index element={<Navigate to="/files" replace />} />
         <Route path="files" element={<EditorTabs />}>
           <Route index element={<FilesPage />} />
