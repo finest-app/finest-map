@@ -8,8 +8,9 @@ const initialFlowJsonObject: ReactFlowJsonObject<NodeData, unknown> = {
   nodes: [
     {
       id: nanoid(),
-      sourcePosition: Position.Right,
       type: textUpdaterNodeName,
+      selected: true,
+      sourcePosition: Position.Right,
       data: {
         content: toStyloContent('Hello World!'),
         isRoot: true

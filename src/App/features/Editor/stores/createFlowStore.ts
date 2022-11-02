@@ -74,9 +74,20 @@ const createFlowStore = (
       const node = nodes.find(node => node.id === nodeId)
 
       if (node) {
-        const childNodeIdSet = new Set(
-          getOutgoers(node, nodes, edges).map(node => node.id)
-        ).add(node.id)
+        const childNodeIdSet = new Set<string>([])
+
+        const deleteNode = (targetNode: Node) => {
+          childNodeIdSet.add(targetNode.id)
+
+          const childNodes = getOutgoers(targetNode, nodes, edges)
+
+          childNodes.forEach(childNode => {
+            childNodeIdSet.add(childNode.id)
+            deleteNode(childNode)
+          })
+        }
+
+        deleteNode(node)
 
         set(state => ({
           nodes: state.nodes.filter(node => !childNodeIdSet.has(node.id)),
@@ -106,9 +117,16 @@ const createFlowStore = (
       set({ connectingNodeId: nodeId })
     },
     onConnectEnd(event) {
-      const { reactFlowInstance, reactflowWrapper, connectingNodeId } = get()
+      const { nodes, reactFlowInstance, reactflowWrapper, connectingNodeId } =
+        get()
 
       if (reactFlowInstance && reactflowWrapper && connectingNodeId) {
+        const connectingNode = nodes.find(node => node.id === connectingNodeId)
+
+        if (connectingNode) {
+          connectingNode.selected = false
+        }
+
         const id = nanoid()
 
         const { left, top } = reactflowWrapper.getBoundingClientRect()
@@ -118,6 +136,7 @@ const createFlowStore = (
         const newNode: Node<NodeData> = {
           id,
           type: textUpdaterNodeName,
+          selected: true,
           sourcePosition: Position.Right,
           targetPosition: Position.Left,
           position: project({
