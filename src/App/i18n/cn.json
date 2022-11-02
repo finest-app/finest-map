@@ -23,6 +23,12 @@
     "languages": "语言",
     "display_language": "显示语言"
   },
+  "navbar": {
+    "files": "文件",
+    "account": "账户",
+    "settings": "设置",
+    "logout": "注销"
+  },
   "form": {
     "invalid_name": "用户名长度须在4到16个字符之间，只能包含字母、数字、破折号和下划线",
     "invalid_email": "请输入有效的邮箱地址",

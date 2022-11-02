@@ -23,6 +23,12 @@
     "languages": "Languages",
     "display_language": "Display language"
   },
+  "navbar": {
+    "files": "Files",
+    "account": "Account",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
   "form": {
     "invalid_name": "Your name must be between 4 and 16 characters and contain only alphanumerics, dashes and underscores.",
     "invalid_email": "Please enter a valid email.",
