@@ -29,8 +29,18 @@
     "rename": "Rename",
     "rename_file": "Rename File",
     "delete": "Delete",
+    "successfully_deleted": "Successfully deleted",
     "file_name": "File name",
-    "new_file_name": "New File name"
+    "new_file_name": "New File name",
+    "untitled_file": "untitled file"
+  },
+  "editor": {
+    "tabs": "Tabs",
+    "close_tab": "Close",
+    "files": "Files",
+    "zoom_in": "zoom in",
+    "zoom_out": "zoom out",
+    "fit_view": "fit view"
   },
   "navbar": {
     "files": "Files",

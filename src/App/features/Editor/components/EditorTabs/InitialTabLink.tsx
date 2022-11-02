@@ -10,9 +10,10 @@ import {
 
 type InitialTabLinkProps = LinkProps & {
   leftIcon: TablerIcon
+  name: string
 }
 
-const InitialTabLink = ({ to, leftIcon }: InitialTabLinkProps) => {
+const InitialTabLink = ({ to, leftIcon, name }: InitialTabLinkProps) => {
   const resolved = useResolvedPath(to)
   const match = useMatch({ path: resolved.pathname, end: true })
 
@@ -29,7 +30,7 @@ const InitialTabLink = ({ to, leftIcon }: InitialTabLinkProps) => {
       leftIcon={<LeftIcon size={20} />}
       fullWidth
       variant={match ? 'filled' : 'light'}>
-      Files
+      {name}
     </Button>
   )
 }

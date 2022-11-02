@@ -4,6 +4,7 @@ import { IconPencilMinus, IconX } from '@tabler/icons'
 import { useNavigate } from 'react-router-dom'
 import useEditFileNavigate from 'App/features/Editor/hooks/useEditFileNavigate'
 import useEditorTabsStore from 'App/features/Editor/stores/useEditorTabsStore'
+import { useAutocompleteT } from 'App/i18n'
 import { type FileData } from 'App/features/Files/api/types'
 import RenameTabFileForm from './RenameTabFileForm'
 
@@ -16,9 +17,11 @@ const EditorTabMenu = (file: EditorTabMenuProps) => {
   const navigate = useNavigate()
   const goEditFile = useEditFileNavigate()
 
+  const { T } = useAutocompleteT()
+
   const handleRename = () => {
     openModal({
-      title: 'Rename File',
+      title: T('files.rename_file'),
       children: <RenameTabFileForm {...file} />
     })
   }
@@ -38,12 +41,12 @@ const EditorTabMenu = (file: EditorTabMenuProps) => {
       <Menu.Item
         icon={<IconPencilMinus size={MENU_ICON_SIZE} />}
         onClick={handleRename}>
-        Rename
+        {T('files.rename')}
       </Menu.Item>
       <Menu.Item
         icon={<IconX size={MENU_ICON_SIZE} />}
         onClick={handleCloseTab}>
-        Close
+        {T('editor.close_tab')}
       </Menu.Item>
     </>
   )

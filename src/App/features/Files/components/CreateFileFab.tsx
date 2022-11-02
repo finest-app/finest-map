@@ -13,10 +13,12 @@ const CreateFileFab = () => {
   const createFileMutation = useCreateFile()
   const addTab = useEditorTabsStore(state => state.addTab)
 
+  const { T } = useAutocompleteT()
+
   const handleClick = async () => {
     const file = await createFileMutation.mutateAsync({
       kind: 'flow',
-      name: 'untitled file',
+      name: T('files.untitled_file'),
       raw: JSON.stringify(initialFlowJsonObject)
     })
 
@@ -24,8 +26,6 @@ const CreateFileFab = () => {
 
     goEditFile(file.id)
   }
-
-  const { T } = useAutocompleteT()
 
   return (
     <Affix position={{ bottom: 24, right: 24 }}>

@@ -16,6 +16,7 @@ import {
   WithId
 } from './types'
 import notify from 'App/shared/notify'
+import { autocompleteTr } from 'App/i18n'
 
 const FILES_API_PATH = '/files'
 
@@ -106,7 +107,9 @@ export const useDeleteFile = () => {
     },
     {
       onSuccess() {
-        notify.success({ message: 'Successfully deleted' })
+        notify.success({
+          message: autocompleteTr('files.successfully_deleted')
+        })
         queryClient.invalidateQueries({ queryKey: filesKeys._def })
       }
     }
