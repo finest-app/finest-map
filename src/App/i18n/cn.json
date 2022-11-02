@@ -8,8 +8,8 @@
     "password": "密码",
     "your_password": "您的密码",
     "create_new_account": "创建新账户",
-    "already_have_an_account": "已注册过账号？",
-    "welcome_back_to_finest_map": "欢迎回到 Finest Map App！",
+    "already_have_an_account": "已拥有账号？",
+    "welcome_back_to_finest_map": "欢迎使用 Finest Map App！",
     "do_not_have_an_account": "还未有账号？",
     "sign_up_for_free": "免费注册",
     "login_failure": "邮箱或密码不正确"
