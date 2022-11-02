@@ -1,3 +1,3 @@
-import reactFlowLogo from './react_flow_logo.svg'
+import flowIcon from './flow_icon.svg'
 
-export { reactFlowLogo }
+export { flowIcon }

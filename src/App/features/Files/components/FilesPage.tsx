@@ -12,7 +12,7 @@ const FilesPage = () => {
   const filesQuery = useFiles()
 
   return (
-    <Paper className="flex-1 p-xs xs:p-sm">
+    <Paper className="flex-1 p-xs xs:p-lg">
       <AppSpotlight actions={actions}>
         <FilesList>
           {filesQuery.data?.map(file => (
