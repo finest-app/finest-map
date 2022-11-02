@@ -12,7 +12,9 @@ type FileId = FileData['id']
 export type EditorTabData = { file: FileData }
 
 interface EditorTabsState {
+  lastEditedFileId: FileId | null
   tabs: EditorTabData[]
+  setLastEditedFileId: (fileId: FileId | null) => void
   getTabIndex: (fileId: FileId) => number
   getTab: (fileId: FileId) => EditorTabData | null
   setTab: (file: FileData) => void
@@ -25,7 +27,11 @@ interface EditorTabsState {
 const useEditorTabsStore = create<EditorTabsState>()(
   persist(
     immer((set, get) => ({
+      lastEditedFileId: null,
       tabs: [],
+      setLastEditedFileId(fileId) {
+        set({ lastEditedFileId: fileId })
+      },
       getTabIndex(fileId) {
         const index = get().tabs.findIndex(tab => tab.file.id === fileId)
 

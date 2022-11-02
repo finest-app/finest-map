@@ -4,6 +4,7 @@ import { useFile } from 'App/features/Files/api'
 import useFileId from '../hooks/useFileId'
 import useEditorTabsStore from '../stores/useEditorTabsStore'
 import FlowEditor from './FlowEditor'
+import useSetlastEditedFileIdEffect from '../hooks/useSetlastEditedFileIdEffect'
 
 const EditFilePage = () => {
   const tabs = useEditorTabsStore(state => state.tabs)
@@ -27,6 +28,8 @@ const EditFilePage = () => {
       }
     }
   )
+
+  useSetlastEditedFileIdEffect()
 
   return (
     <>
