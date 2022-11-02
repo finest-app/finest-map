@@ -19,6 +19,27 @@ module.exports = {
         md: '16px',
         lg: '20px',
         xl: '24px'
+      },
+      typography: {
+        lg: {
+          css: {
+            [[
+              'h1',
+              'h2',
+              'h3',
+              'h4',
+              'h5',
+              'h6',
+              'hr',
+              'p',
+              'ol',
+              'ul',
+              ':where(li):not(:where([class~="not-prose"] *))'
+            ].join(',')]: {
+              margin: 0
+            }
+          }
+        }
       }
     }
   },

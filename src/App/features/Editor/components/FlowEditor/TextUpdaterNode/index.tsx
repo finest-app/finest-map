@@ -68,7 +68,7 @@ const TextUpdaterNode = ({
         innerRef={articleRef}
         tagName="article"
         className={cx(
-          'prose-lg prose focus-within:outline-none',
+          'prose-lg prose break-words focus-within:outline-none',
           colorScheme === 'dark' && 'prose-invert'
         )}
         html={data.content}
