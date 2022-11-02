@@ -23,6 +23,15 @@
     "languages": "Languages",
     "display_language": "Display language"
   },
+  "files": {
+    "create_a_new_file": "Create a new file",
+    "edit": "Edit",
+    "rename": "Rename",
+    "rename_file": "Rename File",
+    "delete": "Delete",
+    "file_name": "File name",
+    "new_file_name": "New File name"
+  },
   "navbar": {
     "files": "Files",
     "account": "Account",
@@ -30,6 +39,7 @@
     "logout": "Logout"
   },
   "form": {
+    "submit": "Submit",
     "invalid_name": "Your name must be between 4 and 16 characters and contain only alphanumerics, dashes and underscores.",
     "invalid_email": "Please enter a valid email.",
     "invalid_password": "Your password must be between 6 and 12 characters and contains only alphanumerics."

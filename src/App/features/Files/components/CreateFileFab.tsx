@@ -3,6 +3,7 @@ import { IconPlus } from '@tabler/icons'
 import useEditFileNavigate from 'App/features/Editor/hooks/useEditFileNavigate'
 import useEditorTabsStore from 'App/features/Editor/stores/useEditorTabsStore'
 import initialFlowJsonObject from 'App/features/Editor/utils/initialFlowJsonObject'
+import { useAutocompleteT } from 'App/i18n'
 import { useCreateFile } from '../api'
 
 const CreateFileFab = () => {
@@ -24,9 +25,11 @@ const CreateFileFab = () => {
     goEditFile(file.id)
   }
 
+  const { T } = useAutocompleteT()
+
   return (
     <Affix position={{ bottom: 24, right: 24 }}>
-      <Tooltip label="Create a new file" openDelay={500}>
+      <Tooltip label={T('files.create_a_new_file')} openDelay={500}>
         <ActionIcon
           variant="filled"
           sx={{ boxShadow: theme.shadows.md }}

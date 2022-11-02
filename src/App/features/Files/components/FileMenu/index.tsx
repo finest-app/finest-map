@@ -3,6 +3,7 @@ import { openModal } from '@mantine/modals'
 import { IconEdit, IconPencilMinus, IconTrash } from '@tabler/icons'
 import useEditorTabsStore from 'App/features/Editor/stores/useEditorTabsStore'
 import useEditFileNavigate from 'App/features/Editor/hooks/useEditFileNavigate'
+import { useAutocompleteT } from 'App/i18n'
 import { useDeleteFile } from '../../api'
 import { type FileData } from '../../api/types'
 import RenameFileForm from './RenameFileForm'
@@ -23,7 +24,7 @@ const FileMenu = (file: FilesListItemMenuProps) => {
 
   const handleRename = () => {
     openModal({
-      title: 'Rename File',
+      title: T('files.rename_file'),
       children: <RenameFileForm {...file} />
     })
   }
@@ -33,21 +34,23 @@ const FileMenu = (file: FilesListItemMenuProps) => {
     closeTab(id)
   }
 
+  const { T } = useAutocompleteT()
+
   return (
     <>
       <Menu.Item icon={<IconEdit size={MENU_ICON_SIZE} />} onClick={handleEdit}>
-        Edit
+        {T('files.edit')}
       </Menu.Item>
       <Menu.Item
         icon={<IconPencilMinus size={MENU_ICON_SIZE} />}
         onClick={handleRename}>
-        Rename
+        {T('files.rename')}
       </Menu.Item>
       <Menu.Item
         color="red"
         icon={<IconTrash size={MENU_ICON_SIZE} />}
         onClick={handleDelete}>
-        Delete
+        {T('files.delete')}
       </Menu.Item>
     </>
   )
