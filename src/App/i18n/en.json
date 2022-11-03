@@ -12,7 +12,8 @@
     "welcome_back_to_finest_map": "Welcome back to Finest Map!",
     "do_not_have_an_account": "Don't have an account?",
     "sign_up_for_free": "Sign Up for free",
-    "login_failure": "email or password is invalid."
+    "login_failure": "email or password is invalid.",
+    "sign_up_was_successful": "sign up was successful"
   },
   "settings": {
     "appearance": "Appearance",

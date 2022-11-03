@@ -12,7 +12,8 @@
     "welcome_back_to_finest_map": "欢迎使用 Finest Map App！",
     "do_not_have_an_account": "还未有账号？",
     "sign_up_for_free": "免费注册",
-    "login_failure": "邮箱或密码不正确"
+    "login_failure": "邮箱或密码不正确",
+    "sign_up_was_successful": "注册成功"
   },
   "settings": {
     "appearance": "外观",

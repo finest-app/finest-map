@@ -4,6 +4,7 @@ import axios from 'App/shared/axios'
 import notify from 'App/shared/notify'
 import useAppStore from 'App/shared/useAppStore'
 import { LoginData, LoginDTO, SignUpDTO } from './types'
+import { autocompleteTr } from 'App/i18n'
 
 const AUTH_API_PATH = '/user'
 
@@ -14,7 +15,9 @@ export const useSignUp = () => {
     (params: SignUpDTO) => axios.post(AUTH_API_PATH + '/sign_up', params),
     {
       onSuccess() {
-        notify.success({ message: 'sign up was successful' })
+        notify.success({
+          message: autocompleteTr('auth.sign_up_was_successful')
+        })
 
         navigate('/login', { replace: true })
       }
